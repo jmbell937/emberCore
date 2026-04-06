@@ -41,15 +41,38 @@ export default function NewAdmissionPage() {
             </span>
           </div>
 
-          <div className="mt-6 space-y-6">
+          <div className="mt-6 grid gap-6">
+            <div className="grid gap-4 md:grid-cols-4">
+              {[
+                { label: "Referral age", value: "5 min" },
+                { label: "Benefits status", value: "Verified" },
+                { label: "Clinical fit", value: "Detox likely" },
+                { label: "Bed readiness", value: "1 open tonight" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-sm text-slate-400">{item.label}</p>
+                  <p className="mt-2 text-xl font-semibold text-white">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
             {sections.map((section) => (
               <div key={section.title} className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-300">{section.title}</p>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-300">{section.title}</p>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300">Auto-save demo</span>
+                </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {section.fields.map((field) => (
+                  {section.fields.map((field, index) => (
                     <label key={field} className="block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-300">
                       <span className="block text-xs uppercase tracking-[0.2em] text-slate-500">{field}</span>
-                      <span className="mt-3 block text-sm text-slate-400">Demo input</span>
+                      <span className="mt-3 block text-sm text-slate-400">
+                        {section.title === "Patient basics"
+                          ? ["Avery", "Collins", "05/18/1991", "(615) 555-0142", "avery@example.com"][index]
+                          : section.title === "Referral + clinical fit"
+                            ? ["Hospital referral", "Alcohol + benzos", "Moderate", "None reported", "Medical detox"][index]
+                            : ["BlueCross TN", "XJ22914", "Verified", "No", "Commercial plan active"][index]}
+                      </span>
                     </label>
                   ))}
                 </div>

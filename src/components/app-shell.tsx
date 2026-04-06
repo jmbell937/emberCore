@@ -101,9 +101,12 @@ export function AppShell({
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <div className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-2 text-sm text-slate-300">
+                <a
+                  href="/schedule"
+                  className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/25 hover:bg-slate-900"
+                >
                   Facility: <span className="font-medium text-white">Nashville Campus</span>
-                </div>
+                </a>
                 <a
                   href="/demo-login"
                   className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/25 hover:bg-slate-900"

@@ -14,7 +14,21 @@ export function ScheduleView() {
           </span>
         </div>
 
-        <div className="mt-6 grid gap-4">
+        <div className="mt-6 grid gap-4 md:grid-cols-4">
+          {[
+            { label: "Detox census", value: "34 / 37" },
+            { label: "Residential census", value: "40 / 48" },
+            { label: "Staff on shift", value: "22" },
+            { label: "Transports today", value: "4" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+              <p className="text-sm text-slate-400">{item.label}</p>
+              <p className="mt-2 text-2xl font-semibold text-white">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 grid gap-4">
           {scheduleEvents.map((event) => (
             <article key={event.slug} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -64,6 +78,31 @@ export function ScheduleView() {
               <p className="mt-2 text-2xl font-semibold text-white">{item.value}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+          <div className="flex items-center justify-between">
+            <p className="font-semibold text-white">Bed board snapshot</p>
+            <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Live occupancy demo</span>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {[
+              { bed: "Detox 2A", status: "Occupied", note: "CIWA q4h" },
+              { bed: "Detox 2B", status: "Turnover", note: "Housekeeping in progress" },
+              { bed: "Residential 5C", status: "Occupied", note: "Family session at 1 PM" },
+              { bed: "Residential 6A", status: "Reserved", note: "Jordan Nguyen admit tomorrow" },
+            ].map((bed) => (
+              <div key={bed.bed} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-medium text-white">{bed.bed}</p>
+                  <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-xs text-cyan-100">
+                    {bed.status}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-slate-300">{bed.note}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2">

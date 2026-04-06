@@ -47,6 +47,19 @@ export function ReportsView() {
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">Why the reporting matters</p>
         <h3 className="mt-2 text-2xl font-semibold text-white">Leadership should understand the facility without exporting to spreadsheets</h3>
 
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {[
+            { label: "Admits this week", value: "18" },
+            { label: "Discharges this week", value: "11" },
+            { label: "Auth reviews due", value: "6" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+              <p className="text-sm text-slate-400">{item.label}</p>
+              <p className="mt-2 text-2xl font-semibold text-white">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 to-violet-400/10 p-5">
           <p className="text-sm font-semibold text-white">What this proves in a customer demo</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">

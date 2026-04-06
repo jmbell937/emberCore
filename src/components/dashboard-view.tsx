@@ -21,6 +21,57 @@ export function DashboardView() {
           </div>
         </div>
 
+        <div className="mt-6 grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
+          <div className="rounded-[1.6rem] border border-white/10 bg-slate-950/45 p-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-white">Facility switcher</p>
+                <p className="mt-1 text-sm text-slate-400">Multi-site operators need fast context switching</p>
+              </div>
+              <a
+                href="/schedule"
+                className="rounded-2xl border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100 transition hover:bg-cyan-300/20"
+              >
+                Open facility board
+              </a>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {[
+                { name: "Nashville Campus", note: "74 census · 92% detox occupancy", active: true },
+                { name: "Franklin Recovery", note: "48 census · 84% residential occupancy" },
+                { name: "Murfreesboro PHP", note: "26 active clients · 3 admits pending" },
+              ].map((facility) => (
+                <div
+                  key={facility.name}
+                  className={`rounded-2xl border px-4 py-3 ${
+                    facility.active
+                      ? "border-cyan-300/25 bg-cyan-300/10"
+                      : "border-white/10 bg-white/[0.03]"
+                  }`}
+                >
+                  <p className="font-medium text-white">{facility.name}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{facility.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[1.6rem] border border-white/10 bg-slate-950/45 p-5">
+            <p className="text-sm font-semibold text-white">Role experience preview</p>
+            <div className="mt-4 space-y-3">
+              {[
+                "Admissions sees intake velocity, payer readiness, and bed placement first",
+                "Clinical teams see chart tasks, unsigned notes, and patient risk context first",
+                "Billing sees auth deadlines, blocked packets, and owner accountability first",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-300">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {dashboardMetrics.map((metric) => {
             const href =
