@@ -10,7 +10,7 @@ const toneClasses = {
 export function DashboardView() {
   return (
     <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-      <section className="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-slate-950/20 sm:p-6">
+      <section className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07)_0%,rgba(255,255,255,0.04)_100%)] p-5 shadow-xl shadow-slate-950/20 sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">Role-aware dashboard</p>
@@ -172,7 +172,7 @@ export function DashboardView() {
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-white/10 bg-slate-950/55 p-5 shadow-xl shadow-slate-950/20 sm:p-6">
+      <section className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(10,15,26,0.92)_0%,rgba(8,12,20,0.96)_100%)] p-5 shadow-xl shadow-slate-950/20 sm:p-6">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-violet-200">Demo vision</p>

@@ -12,6 +12,21 @@ export function LoginDemoView() {
           </p>
         </div>
 
+        <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+          <p className="text-sm font-semibold text-white">Recommended live demo order</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {[
+              "Executive first for overview",
+              "Admissions for intake speed",
+              "Billing for revenue clarity",
+            ].map((item) => (
+              <span key={item} className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {demoRoles.map((role) => (
             <a

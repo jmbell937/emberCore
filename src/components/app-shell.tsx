@@ -89,7 +89,7 @@ export function AppShell({
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col gap-6">
-          <header className="rounded-[2rem] border border-white/10 bg-white/5 p-4 shadow-2xl shadow-slate-950/30 backdrop-blur sm:p-6">
+          <header className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] p-4 shadow-2xl shadow-slate-950/30 backdrop-blur sm:p-6">
             <div className="flex flex-col gap-4 border-b border-white/10 pb-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100">
@@ -184,6 +184,20 @@ export function AppShell({
                   ) : null}
                   <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">{title}</h2>
                   <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">{description}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {[
+                      "Fast charting",
+                      "Role-aware UX",
+                      "Multi-facility ready",
+                    ].map((pill) => (
+                      <span
+                        key={pill}
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs uppercase tracking-[0.22em] text-slate-300"
+                      >
+                        {pill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
