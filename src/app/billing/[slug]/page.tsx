@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { AppShell } from "@/components/app-shell";
+import { BillingReviewWorkspace } from "@/components/billing-review-workspace";
 import { getBillingTask } from "@/lib/demo-data";
 
 type BillingDetailPageProps = {
@@ -26,7 +27,7 @@ export default async function BillingDetailPage({ params }: BillingDetailPagePro
         { label: task.patient },
       ]}
     >
-      <div className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+      <div className="grid gap-6">
         <section className="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-slate-950/20 sm:p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
@@ -81,6 +82,8 @@ export default async function BillingDetailPage({ params }: BillingDetailPagePro
             </div>
           </div>
         </section>
+
+        <BillingReviewWorkspace />
 
         <section className="rounded-[2rem] border border-white/10 bg-slate-950/55 p-5 shadow-xl shadow-slate-950/20 sm:p-6">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">Recommended actions</p>
