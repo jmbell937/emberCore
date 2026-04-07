@@ -1,6 +1,57 @@
+"use client";
+
 import { admissionsLeads } from "@/lib/demo-data";
+import { intakeQueueStorageKey, type IntakeQueueItem } from "@/lib/intake-draft-store";
+
+function getDraftQueueItem() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const saved = window.localStorage.getItem(intakeQueueStorageKey);
+
+  if (!saved) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(saved) as IntakeQueueItem;
+  } catch {
+    window.localStorage.removeItem(intakeQueueStorageKey);
+    return null;
+  }
+}
 
 export function AdmissionsView() {
+  const draftQueueItem = getDraftQueueItem();
+
+  const queue = draftQueueItem
+    ? [draftQueueItem, ...admissionsLeads.map((lead) => ({
+        slug: lead.slug,
+        name: lead.name,
+        levelOfCare: lead.levelOfCare,
+        facility: lead.facility,
+        payer: lead.payer,
+        requestedDate: lead.requestedDate,
+        updatedAt: lead.updatedAt,
+        priority: lead.priority,
+        status: lead.status,
+        stage: lead.stage,
+        summary: lead.summary,
+      }))]
+    : admissionsLeads.map((lead) => ({
+        slug: lead.slug,
+        name: lead.name,
+        levelOfCare: lead.levelOfCare,
+        facility: lead.facility,
+        payer: lead.payer,
+        requestedDate: lead.requestedDate,
+        updatedAt: lead.updatedAt,
+        priority: lead.priority,
+        status: lead.status,
+        stage: lead.stage,
+        summary: lead.summary,
+      }));
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
       <section className="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-slate-950/20 sm:p-6">
@@ -67,11 +118,15 @@ export function AdmissionsView() {
           </div>
 
           <div className="space-y-4">
-            {admissionsLeads.map((lead) => (
+            {queue.map((lead) => (
               <a
                 key={lead.slug}
-                href={`/admissions/${lead.slug}`}
-                className="block rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65"
+                href={lead.slug === "avery-collins" || lead.slug === "jordan-nguyen-intake" || lead.slug === "maria-santos" || lead.slug === "devon-brooks" ? `/admissions/${lead.slug}` : "/admissions/new"}
+                className={`block rounded-[1.5rem] border p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65 ${
+                  lead.slug === draftQueueItem?.slug
+                    ? "border-emerald-300/25 bg-emerald-300/10"
+                    : "border-white/10 bg-slate-950/45"
+                }`}
               >
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div>
@@ -89,6 +144,11 @@ export function AdmissionsView() {
                     </div>
                     <p className="mt-2 text-sm text-slate-300">{lead.status}</p>
                     <p className="mt-2 text-sm text-slate-500">{lead.summary}</p>
+                    {lead.slug === draftQueueItem?.slug ? (
+                      <span className="mt-3 inline-flex rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-100">
+                        Newly submitted demo intake
+                      </span>
+                    ) : null}
                   </div>
                   <div className="text-sm text-slate-400 sm:text-right">
                     <p>{lead.facility}</p>
