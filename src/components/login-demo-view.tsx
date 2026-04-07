@@ -16,7 +16,17 @@ export function LoginDemoView() {
           {demoRoles.map((role) => (
             <a
               key={role}
-              href={role === "Admissions" ? "/admissions/new" : role === "Billing" ? "/billing" : role === "Therapist" ? "/patients/jordan-nguyen" : role === "Nurse" ? "/patients/jordan-nguyen" : "/"}
+              href={
+                role === "Executive + Ops"
+                  ? "/demo-login/executive-ops"
+                  : role === "Admissions"
+                    ? "/demo-login/admissions"
+                    : role === "Therapist"
+                      ? "/demo-login/therapist"
+                      : role === "Nurse"
+                        ? "/demo-login/nurse"
+                        : "/demo-login/billing"
+              }
               className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65"
             >
               <p className="font-semibold text-white">{role}</p>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { quickActions, topNav } from "@/lib/demo-data";
@@ -101,18 +102,18 @@ export function AppShell({
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
+                <Link
                   href="/schedule"
                   className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/25 hover:bg-slate-900"
                 >
                   Facility: <span className="font-medium text-white">Nashville Campus</span>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/demo-login"
                   className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/25 hover:bg-slate-900"
                 >
                   Role preview: <span className="font-medium text-white">Executive + Ops</span>
-                </a>
+                </Link>
               </div>
             </div>
 
