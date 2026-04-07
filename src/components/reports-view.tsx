@@ -41,6 +41,34 @@ export function ReportsView() {
             ))}
           </div>
         </div>
+
+        <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+          <div className="flex items-center justify-between gap-3">
+            <p className="font-semibold text-white">Payer distribution</p>
+            <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Current month</span>
+          </div>
+          <div className="mt-4 space-y-3">
+            {[
+              { payer: "BlueCross TN", value: "38%" },
+              { payer: "Aetna", value: "24%" },
+              { payer: "Cigna", value: "18%" },
+              { payer: "Other", value: "20%" },
+            ].map((item) => (
+              <div key={item.payer}>
+                <div className="mb-2 flex items-center justify-between text-sm text-slate-300">
+                  <span>{item.payer}</span>
+                  <span className="text-white">{item.value}</span>
+                </div>
+                <div className="h-2 rounded-full bg-white/10">
+                  <div
+                    className="h-2 rounded-full bg-gradient-to-r from-cyan-300 to-violet-300"
+                    style={{ width: item.value }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-slate-950/20 sm:p-6">

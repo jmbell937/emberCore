@@ -58,6 +58,24 @@ export default async function AdmissionsDetailPage({ params }: AdmissionsDetailP
             ))}
           </div>
 
+          <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="font-semibold text-white">Recent intake activity</p>
+              <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Auto-timestamped demo</span>
+            </div>
+            <div className="mt-4 space-y-3">
+              {[
+                "16:10 · Benefits verification completed",
+                "16:35 · Clinical packet imported from referral source",
+                "17:00 · Bed board tentatively reserved detox 2B",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 text-sm text-slate-300">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-5">
             <p className="text-sm font-semibold text-white">Current status</p>
             <p className="mt-3 text-sm leading-7 text-slate-300">{lead.status}</p>

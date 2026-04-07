@@ -89,7 +89,12 @@ export function DashboardView() {
                 href={href}
                 className={`block rounded-[1.6rem] border bg-gradient-to-br p-4 transition hover:-translate-y-0.5 hover:border-cyan-300/25 ${toneClasses[metric.tone]}`}
               >
-                <p className="text-sm text-slate-200/90">{metric.label}</p>
+                <div className="flex items-start justify-between gap-3">
+                  <p className="text-sm text-slate-200/90">{metric.label}</p>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-300">
+                    Live
+                  </span>
+                </div>
                 <p className="mt-2 text-3xl font-semibold text-white">{metric.value}</p>
                 <p className="mt-2 text-sm text-slate-300">{metric.change}</p>
               </a>
@@ -125,6 +130,23 @@ export function DashboardView() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-5 rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-4">
+              <div className="flex items-end gap-3">
+                {[
+                  { day: "Mon", height: "h-14" },
+                  { day: "Tue", height: "h-20" },
+                  { day: "Wed", height: "h-16" },
+                  { day: "Thu", height: "h-24" },
+                  { day: "Fri", height: "h-28" },
+                ].map((bar) => (
+                  <div key={bar.day} className="flex flex-1 flex-col items-center gap-2">
+                    <div className={`w-full rounded-t-2xl bg-gradient-to-t from-emerald-300 to-cyan-300 ${bar.height}`} />
+                    <span className="text-xs text-slate-500">{bar.day}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

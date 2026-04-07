@@ -20,36 +20,86 @@ export function BillingView() {
           </span>
         </div>
 
-        <div className="mt-6 space-y-4">
-          {billingTasks.map((task) => (
-            <a
-              key={task.slug}
-              href={`/billing/${task.slug}`}
-              className="block rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-semibold text-white">{task.patient}</p>
-                    <span className={`rounded-full border px-2.5 py-1 text-xs ${severityClasses[task.severity]}`}>
-                      {task.severity}
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-slate-300">
-                      {task.queue}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm leading-7 text-slate-300">{task.issue}</p>
-                  <p className="mt-2 text-sm text-slate-500">{task.summary}</p>
-                  <p className="mt-2 text-xs uppercase tracking-[0.22em] text-slate-500">Owner: {task.owner}</p>
+        <div className="mt-6 grid gap-4 md:grid-cols-[0.82fr_1.18fr]">
+          <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-white">Queue controls</p>
+              <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Interactive demo</span>
+            </div>
+            <div className="mt-4 space-y-3">
+              {[
+                { label: "Critical only", active: true },
+                { label: "Needs signature" },
+                { label: "Payer follow-up" },
+                { label: "Ready to submit" },
+              ].map((filter) => (
+                <div
+                  key={filter.label}
+                  className={`rounded-2xl border px-4 py-3 text-sm ${
+                    filter.active
+                      ? "border-amber-300/25 bg-amber-300/10 text-amber-100"
+                      : "border-white/10 bg-white/[0.03] text-slate-300"
+                  }`}
+                >
+                  {filter.label}
                 </div>
-                <div className="text-sm text-slate-400 sm:text-right">
-                  <p>{task.payer}</p>
-                  <p className="mt-1 text-slate-300">{task.due}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-500">{task.status}</p>
-                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <p className="text-sm font-semibold text-white">Suggested next action</p>
+              <p className="mt-2 text-sm leading-7 text-slate-300">
+                Start with the Aetna review so the missing signature does not block tomorrow’s continued stay request.
+              </p>
+            </div>
+
+            <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/65 p-4">
+              <p className="text-sm font-semibold text-white">Queue status chips</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {[
+                  "Needs signature",
+                  "Packet incomplete",
+                  "Due < 24h",
+                ].map((item) => (
+                  <span key={item} className="rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs text-amber-100">
+                    {item}
+                  </span>
+                ))}
               </div>
-            </a>
-          ))}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {billingTasks.map((task) => (
+              <a
+                key={task.slug}
+                href={`/billing/${task.slug}`}
+                className="block rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65"
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="font-semibold text-white">{task.patient}</p>
+                      <span className={`rounded-full border px-2.5 py-1 text-xs ${severityClasses[task.severity]}`}>
+                        {task.severity}
+                      </span>
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-slate-300">
+                        {task.queue}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-7 text-slate-300">{task.issue}</p>
+                    <p className="mt-2 text-sm text-slate-500">{task.summary}</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.22em] text-slate-500">Owner: {task.owner}</p>
+                  </div>
+                  <div className="text-sm text-slate-400 sm:text-right">
+                    <p>{task.payer}</p>
+                    <p className="mt-1 text-slate-300">{task.due}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-500">{task.status}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -14,7 +14,11 @@ export function PatientsView() {
           </span>
         </div>
 
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-400">
+          Search patients, MRN, or diagnosis…
+        </div>
+
+        <div className="mt-4 space-y-4">
           {patientRecords.map((patient) => (
             <a
               key={patient.slug}

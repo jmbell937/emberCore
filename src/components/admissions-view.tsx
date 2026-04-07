@@ -17,39 +17,89 @@ export function AdmissionsView() {
           </button>
         </div>
 
-        <div className="mt-6 space-y-4">
-          {admissionsLeads.map((lead) => (
-            <a
-              key={lead.slug}
-              href={`/admissions/${lead.slug}`}
-              className="block rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="text-lg font-semibold text-white">{lead.name}</p>
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-slate-300">
-                      {lead.levelOfCare}
-                    </span>
-                    <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-xs text-emerald-100">
-                      {lead.priority}
-                    </span>
-                    <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-xs text-cyan-100">
-                      {lead.stage}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm text-slate-300">{lead.status}</p>
-                  <p className="mt-2 text-sm text-slate-500">{lead.summary}</p>
+        <div className="mt-6 grid gap-4 md:grid-cols-[0.8fr_1.2fr]">
+          <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-white">Queue filters</p>
+              <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Demo state</span>
+            </div>
+            <div className="mt-4 space-y-3">
+              {[
+                { label: "High priority only", active: true },
+                { label: "Benefits verified" },
+                { label: "Needs nursing review" },
+                { label: "Transport pending" },
+              ].map((filter) => (
+                <div
+                  key={filter.label}
+                  className={`rounded-2xl border px-4 py-3 text-sm ${
+                    filter.active
+                      ? "border-cyan-300/25 bg-cyan-300/10 text-cyan-100"
+                      : "border-white/10 bg-white/[0.03] text-slate-300"
+                  }`}
+                >
+                  {filter.label}
                 </div>
-                <div className="text-sm text-slate-400 sm:text-right">
-                  <p>{lead.facility}</p>
-                  <p className="mt-1 text-slate-300">{lead.payer}</p>
-                  <p className="mt-1 text-slate-300">Requested {lead.requestedDate}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-500">Updated {lead.updatedAt}</p>
-                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <p className="text-sm font-semibold text-white">Automation preview</p>
+              <p className="mt-2 text-sm leading-7 text-slate-300">
+                New hospital referrals with verified commercial benefits can be auto-prioritized into the intake queue.
+              </p>
+            </div>
+
+            <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/65 p-4">
+              <p className="text-sm font-semibold text-white">Status automation</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {[
+                  "Benefits verified",
+                  "Nursing review queued",
+                  "Bed hold available",
+                ].map((item) => (
+                  <span key={item} className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-100">
+                    {item}
+                  </span>
+                ))}
               </div>
-            </a>
-          ))}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {admissionsLeads.map((lead) => (
+              <a
+                key={lead.slug}
+                href={`/admissions/${lead.slug}`}
+                className="block rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-cyan-300/25 hover:bg-slate-950/65"
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-lg font-semibold text-white">{lead.name}</p>
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-slate-300">
+                        {lead.levelOfCare}
+                      </span>
+                      <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-xs text-emerald-100">
+                        {lead.priority}
+                      </span>
+                      <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-xs text-cyan-100">
+                        {lead.stage}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm text-slate-300">{lead.status}</p>
+                    <p className="mt-2 text-sm text-slate-500">{lead.summary}</p>
+                  </div>
+                  <div className="text-sm text-slate-400 sm:text-right">
+                    <p>{lead.facility}</p>
+                    <p className="mt-1 text-slate-300">{lead.payer}</p>
+                    <p className="mt-1 text-slate-300">Requested {lead.requestedDate}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-500">Updated {lead.updatedAt}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

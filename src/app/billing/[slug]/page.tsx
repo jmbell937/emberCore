@@ -62,6 +62,24 @@ export default async function BillingDetailPage({ params }: BillingDetailPagePro
               </div>
             ))}
           </div>
+
+          <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="font-semibold text-white">Review activity</p>
+              <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Status history</span>
+            </div>
+            <div className="mt-4 space-y-3">
+              {[
+                "08:40 · Continued stay packet opened by D. Price",
+                "09:05 · Missing therapist signature detected",
+                "09:15 · Follow-up task auto-assigned to K. Patel",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 text-sm text-slate-300">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="rounded-[2rem] border border-white/10 bg-slate-950/55 p-5 shadow-xl shadow-slate-950/20 sm:p-6">

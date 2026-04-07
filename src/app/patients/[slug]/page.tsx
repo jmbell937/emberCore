@@ -100,15 +100,45 @@ export default async function PatientDetailPage({ params }: PatientDetailPagePro
               </div>
             </div>
 
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-semibold text-white">Care team activity</p>
+                <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Shared chart updates</span>
+              </div>
+              <div className="mt-4 space-y-3">
+                {[
+                  "09:12 · Therapist opened daily progress note template",
+                  "10:24 · RN signed CIWA reassessment",
+                  "11:05 · UR reminder added to chart banner",
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 text-sm text-slate-300">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
-              <p className="font-semibold text-white">Suggested note templates</p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-semibold text-white">Suggested note templates</p>
+                <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-100">
+                  Draft auto-saved
+                </span>
+              </div>
               <div className="mt-3 grid gap-3">
                 {[
                   "Detox daily progress note",
                   "Nursing reassessment",
                   "Family session summary",
-                ].map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-300">
+                ].map((item, index) => (
+                  <div
+                    key={item}
+                    className={`rounded-2xl border px-4 py-3 text-sm ${
+                      index === 0
+                        ? "border-cyan-300/25 bg-cyan-300/10 text-cyan-100"
+                        : "border-white/10 bg-white/[0.03] text-slate-300"
+                    }`}
+                  >
                     {item}
                   </div>
                 ))}
